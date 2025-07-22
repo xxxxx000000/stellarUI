@@ -7,3 +7,6 @@ A lightweight and customizable LCD UI framework for Arduino, built on the TFT_eS
 This project is a lightweight LCD UI framework designed for microcontrollers supported by the [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) library.  
 With minimal configuration, it can be used out of the box. The entire codebase is developed using [PlatformIO](https://platformio.org/), ensuring good portability.  
 It includes basic UI components, a set of useful services, and sample pages to help you build your own interface quickly and easily.
+## 使用事项 / Notifications
+可参考示例代码版本进行编写。如果不需要示例，请选择No Example文件夹内的src文件夹进行复制
+Example codes are provided to assist coding. If examples are not needed, choose the src folder in No Example folder to copy
