@@ -24,12 +24,12 @@ LockedPage::LockedPage() {
     addChild(gesture);
 
     Animator* anim = new Animator();
-    anim->addFloatAnim(&label->fy, 0.929f, 0.893f, 150, EasingType::EaseOutQuad);
-    anim->addFloatAnim(&label->fy, 0.893f, 0.929f, 150, EasingType::EaseOutQuad);
-    anim->addFloatAnim(&label->fy, 0.929f, 0.893f, 150, EasingType::EaseOutQuad);
-    anim->addFloatAnim(&label->fy, 0.893f, 0.929f, 150, EasingType::EaseOutQuad);
-    anim->addFloatAnim(&label->fy, 0.929f, 0.929f, 1500, EasingType::EaseOutQuad);
+    anim->addFloatAnim(&label->fy, 0.929f, 0.893f, 150, EasingType::EaseOutQuad, 0);
+    anim->addFloatAnim(&label->fy, 0.893f, 0.929f, 150, EasingType::EaseOutQuad, 150);
+    anim->addFloatAnim(&label->fy, 0.929f, 0.893f, 150, EasingType::EaseOutQuad, 1650);
+    anim->addFloatAnim(&label->fy, 0.893f, 0.929f, 150, EasingType::EaseOutQuad, 1800);
     anim->setLoop(true);
     anim->start();
     addAnimator(anim);
+
 }
