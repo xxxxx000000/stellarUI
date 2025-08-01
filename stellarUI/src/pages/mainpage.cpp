@@ -21,6 +21,20 @@ MainPage::MainPage() {
     addChild(clock);
     auto* block = new ColorBlock(0.5f,0.536f,0.833f,0.786f,0xD6BA,30);
     addChild(block);
+
+    auto* mblock = new ColorBlock(0.625f,0.268f,0.458f,0.143f,TFT_DARKGREY,30);
+    addChild(mblock);
+    Animator* anim = new Animator();
+    anim->addFloatAnim(&mblock->fy, 0.268f, 0.518f, 1000, EasingType::EaseOutBounce, 0);
+    anim->addFloatAnim(&mblock->fy, 0.518f, 0.768f, 1000, EasingType::EaseOutBounce, 1000);
+    anim->addFloatAnim(&mblock->fy, 0.768f, 0.268f, 1000, EasingType::EaseInOutQuad, 2000);
+    anim->addFloatAnim(&mblock->scale, 1.0f, 1.2f, 1500, EasingType::EaseInOutCubic, 0);
+    anim->addFloatAnim(&mblock->scale, 1.2f, 1.0f, 1500, EasingType::EaseInOutCubic, 1500);
+    anim->setLoop(true);
+    anim->start();
+    addAnimator(anim);
+
+
     auto* slider = new Slider(0.167f, 0.196f, 0.167f, 0.643f, 20, SliderDirection::Vertical, 0x1082, 0xFFFF, 0, brightnessservice.getBrightness());
     addChild(slider);
     slider->onChange = [](uint8_t v) {
