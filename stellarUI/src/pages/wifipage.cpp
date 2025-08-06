@@ -12,7 +12,7 @@ WifiPage::WifiPage() {
     auto* backBtn = new Button(0.125f, 0.107f, 0.333f, 0.143f, 0x4090, ButtonShape::Circle, 30);
     addChild(backBtn);
     backBtn->onClickCallback = [this]() {
-        uiManager.pushPage(new ToolsPage(), TransitionType::SlideRight);
+        uiManager.pushPage(new ToolsPage(), TransitionType::UncoverRight);
     };
     addChild(new Text(0.125f, 0.107f, "<", 2, 0xFFFF, true));
 
