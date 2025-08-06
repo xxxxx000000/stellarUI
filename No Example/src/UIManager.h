@@ -10,6 +10,14 @@ enum class TransitionType {
     SlideRight,
     SlideUp,
     SlideDown,
+    CoverLeft,
+    CoverRight,
+    CoverUp,
+    CoverDown,
+    UncoverLeft,
+    UncoverRight,
+    UncoverUp,
+    UncoverDown
 };
 
 class UIManager {
@@ -128,6 +136,46 @@ public:
                 case TransitionType::SlideDown:
                     if (transitionFrom) transitionFrom->draw(buf, 0, progressPxY);
                     if (transitionTo) transitionTo->draw(buf, 0, -h + progressPxY);
+                    break;
+
+                case TransitionType::CoverLeft:
+                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, -w + progressPxX, 0);
+                    break;
+
+                case TransitionType::CoverRight:
+                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, w - progressPxX, 0);
+                    break;
+
+                case TransitionType::CoverUp:
+                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, 0, -h + progressPxY);
+                    break;
+
+                case TransitionType::CoverDown:
+                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, 0, h - progressPxY);
+                    break;
+
+                case TransitionType::UncoverLeft:
+                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, -progressPxX, 0);
+                    break;
+
+                case TransitionType::UncoverRight:
+                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, progressPxX, 0);
+                    break;
+
+                case TransitionType::UncoverUp:
+                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, 0, progressPxY);
+                    break;
+
+                case TransitionType::UncoverDown:
+                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, 0, -progressPxY);
                     break;
 
                 default:
