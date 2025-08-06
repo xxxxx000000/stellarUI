@@ -35,6 +35,7 @@ MainPage::MainPage() {
     addAnimator(anim);
 
 
+
     auto* slider = new Slider(0.167f, 0.196f, 0.167f, 0.643f, 20, SliderDirection::Vertical, 0x1082, 0xFFFF, 0, brightnessservice.getBrightness());
     addChild(slider);
     slider->onChange = [](uint8_t v) {
@@ -49,13 +50,13 @@ MainPage::MainPage() {
     addChild(btn);
     auto* btn2 = new Button(0.625f,0.518f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
     btn2->onClickCallback = [this](){
-        uiManager.pushPage(new PosturePage(),TransitionType::SlideLeft);
+        uiManager.pushPage(new PosturePage(),TransitionType::CoverRight);
         sleepservice.setPreventSleep(true);
     };
     addChild(btn2);
     auto* btn3 = new Button(0.625f,0.768f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
     btn3->onClickCallback = [this](){
-       uiManager.pushPage(new ToolsPage(),TransitionType::SlideLeft);
+       uiManager.pushPage(new ToolsPage(),TransitionType::CoverRight);
     };
     addChild(btn3);
     auto* txt = new Text(0.688f,0.268f,"lock",2,0xFFFF,true);
