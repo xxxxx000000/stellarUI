@@ -11,7 +11,7 @@ PosturePage::PosturePage() {
     auto* backBtn = new Button(0.125f, 0.107f, 0.333f,0.143f, 0xD75F, ButtonShape::Circle, 30);
     addChild(backBtn);
     backBtn->onClickCallback = [this]() {
-        uiManager.pushPage(new MainPage(), TransitionType::SlideRight);
+        uiManager.pushPage(new MainPage(), TransitionType::UncoverRight);
         sleepservice.setPreventSleep(false);
     };
     addChild(new Text(0.125f, 0.107f, "<", 2, 0xFFFF, true));
