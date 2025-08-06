@@ -56,7 +56,7 @@ void setTimePage::skipTimeSetting() {
     minute = now.tm_min;
     second = now.tm_sec;
 
-    uiManager.pushPage(new ToolsPage(), TransitionType::SlideRight);
+    uiManager.pushPage(new ToolsPage(), TransitionType::UncoverRight);
 }
 
 void setTimePage::updateText() {
@@ -82,7 +82,7 @@ void setTimePage::updateText() {
 void setTimePage::nextStep() {
     if (currentStep == Step::Second) {
         rtcservice.setDateTime(year, month, day, hour, minute, second);
-        uiManager.pushPage(new ToolsPage(), TransitionType::SlideLeft);
+        uiManager.pushPage(new ToolsPage(), TransitionType::UncoverRight);
     } else {
         currentStep = static_cast<Step>(static_cast<int>(currentStep) + 1);
     }
