@@ -13,28 +13,28 @@ ToolsPage::ToolsPage() {
     addChild(background);
     auto* btn1 = new Button(0.250f, 0.286f, 0.417f, 0.357f, 0xFFFF, ButtonShape::RoundedRect, 20, 0x5DED);
     btn1->onClickCallback = [this]() {
-        uiManager.pushPage(new BluetoothPage(), TransitionType::SlideLeft);
+        uiManager.pushPage(new BluetoothPage(), TransitionType::CoverRight);
     };
     addChild(btn1);
     auto* txt1 = new Text(0.25f, 0.214f, "BLE", 2, 0x0000, true);
     addChild(txt1);
     auto* btn2 = new Button(0.750f, 0.286f, 0.417f, 0.357f, 0xFFFF, ButtonShape::RoundedRect, 20, 0xDFFF);
     btn2->onClickCallback = [this]() {
-        uiManager.pushPage(new WifiPage(), TransitionType::SlideLeft);
+        uiManager.pushPage(new WifiPage(), TransitionType::CoverRight);
     };
     addChild(btn2);
     auto* txt2 = new Text(0.75f, 0.214f, "WiFi", 2, 0x0000, true);
     addChild(txt2);
     auto* btn3 = new Button(0.250f, 0.714f, 0.417f, 0.357f, 0xFFFF, ButtonShape::RoundedRect, 20, 0xBDF7);
     btn3->onClickCallback = [this]() {
-        uiManager.pushPage(new setTimePage(), TransitionType::SlideLeft);
+        uiManager.pushPage(new setTimePage(), TransitionType::CoverRight);
     };
     addChild(btn3);
     auto* txt3 = new Text(0.25f, 0.643f, "Time", 2, 0x0000, true);
     addChild(txt3);
     auto* btn4 = new Button(0.750f, 0.714f, 0.417f, 0.357f, 0xFFFF, ButtonShape::RoundedRect, 20, 0xCFFF);
     btn4->onClickCallback = [this]() {
-        uiManager.pushPage(new MainPage(), TransitionType::SlideRight);
+        uiManager.pushPage(new MainPage(), TransitionType::UncoverRight);
     };
     addChild(btn4);
     auto* txt4 = new Text(0.75f, 0.714f, "Back", 2, 0x0000, true);
