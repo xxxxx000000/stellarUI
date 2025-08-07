@@ -10,7 +10,7 @@ inline void BootAnimation(TFT_eSPI& tft, TFT_eSprite& buffer) {
     const int h = tft.height();
     const int centerX = w / 2;
     const int centerY = h / 2;
-    const int starCount = 80;
+    const int starCount = 200;
     const int frameInterval = 16;
 
     int duration = startupDuration;
@@ -139,8 +139,8 @@ inline void BootAnimation2(TFT_eSPI& tft, TFT_eSprite& buffer) {
     const int h = tft.height();
     const int centerX = w / 2;
     const int centerY = h / 2;
-    const int starCount = 100;
-    const int frameInterval = 16; // 约60FPS
+    const int starCount = 200;
+    const int frameInterval = 16;
 
     const int IWidth = 8;
     const int IHeight = 60;
