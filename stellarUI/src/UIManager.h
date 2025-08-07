@@ -139,42 +139,42 @@ public:
                     break;
 
                 case TransitionType::CoverLeft:
-                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, progressPxX/4, 0);
                     if (transitionTo) transitionTo->draw(buf, -w + progressPxX, 0);
                     break;
 
                 case TransitionType::CoverRight:
-                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, - progressPxX/4, 0);
                     if (transitionTo) transitionTo->draw(buf, w - progressPxX, 0);
                     break;
 
                 case TransitionType::CoverUp:
-                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, 0, progressPxY/4);
                     if (transitionTo) transitionTo->draw(buf, 0, -h + progressPxY);
                     break;
 
                 case TransitionType::CoverDown:
-                    if (transitionFrom) transitionFrom->draw(buf, 0, 0);
+                    if (transitionFrom) transitionFrom->draw(buf, 0, - progressPxY/4);
                     if (transitionTo) transitionTo->draw(buf, 0, h - progressPxY);
                     break;
 
                 case TransitionType::UncoverLeft:
-                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf,(w - progressPxX)/4, 0);
                     if (transitionFrom) transitionFrom->draw(buf, -progressPxX, 0);
                     break;
 
                 case TransitionType::UncoverRight:
-                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, (-w + progressPxX)/4, 0);
                     if (transitionFrom) transitionFrom->draw(buf, progressPxX, 0);
                     break;
 
                 case TransitionType::UncoverUp:
-                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, 0, (-h + progressPxY)/4);
                     if (transitionFrom) transitionFrom->draw(buf, 0, progressPxY);
                     break;
 
                 case TransitionType::UncoverDown:
-                    if (transitionTo) transitionTo->draw(buf, 0, 0);
+                    if (transitionTo) transitionTo->draw(buf, 0, (h - progressPxY)/4);
                     if (transitionFrom) transitionFrom->draw(buf, 0, -progressPxY);
                     break;
 
