@@ -1,12 +1,23 @@
 #include "MainPage.h"
 #include "../UIManager.h"
 
-extern UIManager uiManager;
+#ifdef brightnessService
+#ifdef storageService
 extern BrightnessService brightnessservice;
+#endif
+#endif
+#ifdef sleepService
 extern SleepService sleepservice;
+#endif
+#ifdef batteryService
 extern BatteryService batteryservice;
+#endif
 extern InputService inputservice;
+#ifdef imuService
 extern IMUService imuservice;
+#endif
+
+extern UIManager uiManager;
 extern ScreenRotationService screenrotationservice;
 
 MainPage::MainPage() {
@@ -14,7 +25,11 @@ MainPage::MainPage() {
     addChild(background);
 
     auto* batterytext = new LiveText(0.833f, 0.071f, 0xDEFB, []() {
+        #ifdef batteryService
         return String((int)batteryservice.getPercentage()) + "%";
+        #else
+        return String("--%");
+        #endif
     },2);
     addChild(batterytext);
     auto* clock = new ClockText(70, 20, 2, 0xDEFB, true);
@@ -36,10 +51,20 @@ MainPage::MainPage() {
 
 
 
-    auto* slider = new Slider(0.167f, 0.196f, 0.167f, 0.643f, 20, SliderDirection::Vertical, 0x1082, 0xFFFF, 0, brightnessservice.getBrightness());
+    auto* slider = new Slider(0.167f, 0.196f, 0.167f, 0.643f, 20, SliderDirection::Vertical, 0x1082, 0xFFFF, 0,
+        #ifdef brightnessService
+        brightnessservice.getBrightness()
+        #else
+        255
+        #endif
+    );
     addChild(slider);
     slider->onChange = [](uint8_t v) {
+        #ifdef brightnessService 
+        #ifdef storageService
         brightnessservice.setBrightness(v);
+        #endif
+        #endif
     };
     auto* btn = new Button(0.625f,0.268f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
     btn->onClickCallback = [this](){
@@ -51,7 +76,9 @@ MainPage::MainPage() {
     auto* btn2 = new Button(0.625f,0.518f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
     btn2->onClickCallback = [this](){
         uiManager.pushPage(new PosturePage(),TransitionType::CoverRight);
+        #ifdef sleepService
         sleepservice.setPreventSleep(true);
+        #endif
     };
     addChild(btn2);
     auto* btn3 = new Button(0.625f,0.768f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
@@ -120,7 +147,10 @@ MainPage::MainPage() {
         return "acceleration > 0.5";
     };
     auto popupShowLambda = []() -> bool {
+        #ifdef imuService
         return imuservice.getLinearAccelerationMagnitude() > 0.5f; 
+        #endif
+        return false;
     };
     auto* popup = new PopupComponent(
         0.215f,
@@ -134,7 +164,9 @@ MainPage::MainPage() {
     });
     popup->setOnClick([]() {
         uiManager.pushPage(new PosturePage(),TransitionType::SlideDown);
+        #ifdef sleepService
         sleepservice.setPreventSleep(true);
+        #endif
     });
     addChild(popup);
 }

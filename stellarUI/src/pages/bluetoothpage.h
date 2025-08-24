@@ -7,7 +7,6 @@
 #include "../UIComponents/switch.h"
 #include "../services/rtcservice.h"
 #include "../services/framerateservice.h"
-#include "toolspage.h"
 
 class BluetoothPage : public Page {
 public:

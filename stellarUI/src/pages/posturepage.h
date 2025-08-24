@@ -5,7 +5,6 @@
 #include "../UIComponents/text.h"
 #include "../UIComponents/livetext.h"
 #include "../UIComponents/switch.h"
-#include "mainpage.h"
 #include "../services/IMUService.h"
 #include "../services/sleepservice.h"
 

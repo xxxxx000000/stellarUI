@@ -1,11 +1,14 @@
 #include "settimepage.h"
 
 extern UIManager uiManager;
+#ifdef rtcService
 extern RTCService rtcservice;
+#endif
 
 setTimePage::setTimePage()
     : currentStep(Step::Year), year(2025), month(1), day(1), hour(12), minute(30), second(0)
 {
+    #ifdef rtcService
     auto* background = new ColorBlock(0.5f, 0.5f, 1.0f, 1.0f, 0x1082, 30);
     addChild(background);
 
@@ -41,10 +44,20 @@ setTimePage::setTimePage()
     addChild(skipBtn);
     auto* skipLabel = new Text(0.500f, 0.464f, "done", 2, 0xFFFF, true);
     addChild(skipLabel);
-
+    
     updateText();
+    #else
+    auto* backBtn = new Button(0.125f, 0.107f, 0.333f, 0.143f, 0x4090, ButtonShape::Circle, 30);
+    addChild(backBtn);
+    backBtn->onClickCallback = [this]() {
+        uiManager.pushPage(new ToolsPage(), TransitionType::UncoverRight);
+    };
+    auto* errorText = new Text(0.5f, 0.5f, "RTC Service Not Enabled", 2, 0xFFFF, true);
+    addChild(errorText);
+    #endif
 }
 
+#ifdef rtcService
 void setTimePage::skipTimeSetting() {
     struct tm now;
     rtcservice.getTime(now);
@@ -121,3 +134,4 @@ void setTimePage::decrease() {
     }
     updateText();
 }
+#endif

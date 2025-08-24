@@ -3,14 +3,18 @@
 #include "../UIManager.h" 
 
 extern UIManager uiManager;
-extern RTCService rtcservice;
+#ifdef framerateService
 extern FrameRateService framerateservice;
+#endif
 
 LockedPage::LockedPage() {
     auto* background = new StarryBackground(240,280,120);
     addChild(background);
     auto* frameText = new LiveText(0.833f, 0.071f, 0xDEFB, []() {
+        #ifdef framerateService
         return String(framerateservice.getFPS());
+        #endif
+        return String("--");
     },2);
     addChild(frameText);
     auto* label = new Text(0.5f, 0.929f, "^", 3, 0xDEFB, true);

@@ -2,11 +2,7 @@
 #include "../UIManager.h"
 
 extern UIManager uiManager;
-extern BrightnessService brightnessservice;
-extern SleepService sleepservice;
-extern BatteryService batteryservice;
 extern InputService inputservice;
-extern IMUService imuservice;
 
 ToolsPage::ToolsPage() {
     auto* background = new ColorBlock(0.5f, 0.5f, 1.0f, 1.0f, 0x1082, 30);

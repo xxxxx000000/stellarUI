@@ -2,8 +2,12 @@
 #include "../UIManager.h"
 
 extern UIManager uiManager;
+#ifdef imuService
 extern IMUService imuservice;
+#endif
+#ifdef sleepService
 extern SleepService sleepservice;
+#endif
 
 PosturePage::PosturePage() {
     auto* background = new ColorBlock(0.5f, 0.5f, 1.0f, 1.0f, 0x1082, 30);
@@ -12,17 +16,25 @@ PosturePage::PosturePage() {
     addChild(backBtn);
     backBtn->onClickCallback = [this]() {
         uiManager.pushPage(new MainPage(), TransitionType::UncoverRight);
+        #ifdef sleepService
         sleepservice.setPreventSleep(false);
+        #endif
     };
     addChild(new Text(0.125f, 0.107f, "<", 2, 0xFFFF, true));
 
     liveText = new LiveText(0.5f, 0.107f, 0xFFFF, []() {
+        #ifdef imuService
         return String(imuservice.getLinearAccelerationMagnitude());
+        #endif
+        return String("---");
     }, 2);
     addChild(liveText);
 
     linechart = new LineChartComponent(0.083f, 0.25f, 0.833f, 0.357f, []() {
+        #ifdef imuService
         return imuservice.getLinearAccelerationMagnitude();
+        #endif
+        return 0.0f;
     }, 20);
     addChild(linechart);
 

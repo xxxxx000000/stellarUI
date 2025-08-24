@@ -8,7 +8,6 @@
 #include "../services/rtcservice.h"
 #include "../services/framerateservice.h"
 #include "../services/screenrotationservice.h"
-#include "toolspage.h"
 
 class WifiPage : public Page {
 public:

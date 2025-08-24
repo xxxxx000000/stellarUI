@@ -95,6 +95,12 @@ public:
         scrollOffset = 0;
         wrappedLines.clear();
     }
+    void setFlexLayoutParams(float _fx, float _fy, float _fw, float _fh) {
+        fx = _fx;
+        fy = _fy;
+        fw = _fw;
+        fh = _fh;
+    }
 
     void draw(TFT_eSprite& buf, int offsetX = 0, int offsetY = 0) override {
         if(!flexLayout){

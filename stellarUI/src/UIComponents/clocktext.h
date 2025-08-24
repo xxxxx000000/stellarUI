@@ -1,6 +1,7 @@
 #pragma once
 #include "Text.h"
 #include "../services/rtcservice.h"
+#include "../config.h"
 
 /*
     从rtc服务获取时间并显示的组件，参数为横纵坐标，字体大小，颜色，是否以中心为准（布尔）
@@ -8,7 +9,9 @@
 
 */
 
+#ifdef rtcService
 extern RTCService rtcservice;
+#endif
 
 class ClockText : public Text {
 private:
@@ -23,7 +26,11 @@ public:
 
     void update(uint32_t now) override {
         if (now - lastUpdate > updateInterval) {
+            #ifdef rtcService
             setText(rtcservice.getTimeString());
+            #else
+            setText("--:--:--");
+            #endif
             lastUpdate = now;
         }
         Text::update(now);

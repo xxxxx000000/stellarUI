@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "esp_sleep.h"
 #include "brightnessservice.h"
+#include "../config.h"
 
 /*
     与亮度服务绑定，用于让ESP32进行轻度睡眠，按需修改或优化
@@ -14,7 +15,7 @@ extern BrightnessService brightnessservice;
 class SleepService {
 private:
     uint32_t lastTouchMillis = 0;
-    uint32_t timeout = 10000;
+    uint32_t timeout = AUTO_LOCK_TIME * 1000;
     gpio_num_t wakeupPin = GPIO_NUM_14;
     bool sleeping = false;
 
@@ -26,7 +27,7 @@ public:
     bool isPreventingSleep() const {
         return preventSleep;
     }
-    void begin(uint32_t timeoutMs = 10000, gpio_num_t wakePin = GPIO_NUM_14) {
+    void begin(uint32_t timeoutMs = AUTO_LOCK_TIME * 1000, gpio_num_t wakePin = GPIO_NUM_14) {
         timeout = timeoutMs;
         wakeupPin = wakePin;
         lastTouchMillis = millis();
