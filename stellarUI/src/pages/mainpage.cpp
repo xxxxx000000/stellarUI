@@ -21,9 +21,6 @@ extern UIManager uiManager;
 extern ScreenRotationService screenrotationservice;
 
 MainPage::MainPage() {
-    auto* background = new StarryBackground(240,280,80);
-    addChild(background);
-
     auto* batterytext = new LiveText(0.833f, 0.071f, 0xDEFB, []() {
         #ifdef batteryService
         return String((int)batteryservice.getPercentage()) + "%";

@@ -5,14 +5,6 @@
 
 extern ScreenRotationService screenrotationservice;
 
-/*
-    检测滑动的组件，参数为横纵坐标，长宽，滑动阈值
-    可以设置不同方向滑动时触发不同的程序
-    Component for detecting swipe gestures, with parameters: X and Y coordinates, width, height, and swipe threshold
-    Different callbacks can be set to trigger when swiping in different directions
-
-*/
-
 class GestureDetector : public Component {
 public:
     std::function<void()> onSwipeUp;
@@ -28,6 +20,8 @@ public:
 
     int screenWidth;
     int screenHeight;
+
+    bool hasTriggered = false;
 
     GestureDetector(int _x, int _y, int _w, int _h, int _threshold = 30)
         : swipeThreshold(_threshold), width(_w), height(_h), flexLayout(false) {
@@ -69,29 +63,31 @@ public:
                 isTouching = true;
                 startX = tx;
                 startY = ty;
-            }
-        } else {
-            if (isTouching) {
-                isTouching = false;
-                int dx = tx == -1 ? lastX - startX : tx - startX;
-                int dy = ty == -1 ? lastY - startY : ty - startY;
-
-                if (abs(dx) < swipeThreshold && abs(dy) < swipeThreshold) return;
-
-                if (abs(dx) > abs(dy)) {
-                    if (dx > 0 && onSwipeRight) onSwipeRight();
-                    else if (dx < 0 && onSwipeLeft) onSwipeLeft();
-                } else {
-                    if (dy > 0 && onSwipeDown) onSwipeDown();
-                    else if (dy < 0 && onSwipeUp) onSwipeUp();
+                hasTriggered = false;
+            } 
+            else if (isTouching && !hasTriggered) {
+                int dx = tx - startX;
+                int dy = ty - startY;
+                if (abs(dx) >= swipeThreshold || abs(dy) >= swipeThreshold) {
+                    if (abs(dx) > abs(dy)) {
+                        if (dx > 0 && onSwipeRight) onSwipeRight();
+                        else if (dx < 0 && onSwipeLeft) onSwipeLeft();
+                    } else {
+                        if (dy > 0 && onSwipeDown) onSwipeDown();
+                        else if (dy < 0 && onSwipeUp) onSwipeUp();
+                    }
+                    hasTriggered = true;
                 }
             }
+        } 
+        else {
+            isTouching = false;
+            hasTriggered = false;
         }
 
         lastX = tx;
         lastY = ty;
     }
-
 
 private:
     bool isTouching = false;

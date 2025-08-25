@@ -9,6 +9,8 @@
 */
 
 class Page : public Component {
+private:
+    Component* activeComponent = nullptr;
 public:
     std::vector<Component*> children;
     std::vector<Animator*> animators;
@@ -67,10 +69,29 @@ public:
 
     void handleTouch(int tx, int ty) override {
         if (!enabled) return;
+        if (tx >= 0 && ty >= 0 && activeComponent == nullptr) {
+            for (int i = children.size() - 1; i >= 0; --i) {
+                Component* c = children[i];
+                if (c && c->enabled) {
+                    int localTx = tx - x;
+                    int localTy = ty - y;
+                    if (c->containsPoint(localTx, localTy)) {
+                        activeComponent = c;
+                        break;
+                    }
+                }
+            }
+        }
 
-        for (auto c : children) {
-            if (c && c->enabled) {
-                c->handleTouch(tx - x, ty - y);
+        bool isTouchEnd = (tx < 0 || ty < 0);
+
+        if (activeComponent) {
+            int localTx = tx - x;
+            int localTy = ty - y;
+            activeComponent->handleTouch(localTx, localTy);
+
+            if (isTouchEnd) {
+                activeComponent = nullptr;
             }
         }
     }

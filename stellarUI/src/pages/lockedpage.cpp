@@ -19,7 +19,7 @@ LockedPage::LockedPage() {
     addChild(frameText);
     auto* label = new Text(0.5f, 0.929f, "^", 3, 0xDEFB, true);
     addChild(label);
-    auto* gesture = new GestureDetector(0.5f,0.5f,1.0f,1.0f,30);
+    auto* gesture = new GestureDetector(0.5f,0.85f,1.0f,0.3f,30);
     auto* clock = new ClockText(0.5f, 0.464f, 4, TFT_WHITE, true);
     addChild(clock);
     gesture->onSwipeUp = []() {

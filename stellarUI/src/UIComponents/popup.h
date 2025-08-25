@@ -333,7 +333,7 @@ public:
     void handleTouch(int tx, int ty) override {
         if (animProgress <= 0.0f) return;
         if (tx < 0 || ty < 0) return;
-        if (onClickCallback && containsPoint(tx, ty)) {
+        if (onClickCallback && barcontainsPoint(tx, ty)) {
             onClickCallback();
         }
         if (!animHiding) {
@@ -344,6 +344,10 @@ public:
     }
 
     bool containsPoint(int px, int py) {
+        if (animProgress <= 0.0f) return false;
+        return currentlyVisible;
+    }
+    bool barcontainsPoint(int px, int py) {
         if (animProgress <= 0.0f) return false;
         float easedT = easeOutBack(animProgress);
         float scale = 0.7f + 0.3f * easedT;
