@@ -9,7 +9,7 @@ private:
     uint16_t color;
     bool isVisible = false;
     uint32_t angle = 0;
-
+    float angleAcc = 0.0f;
     float rotationSpeed = 360.0f / 400.0f;
     uint32_t lastUpdateTime = 0;
 
@@ -33,12 +33,13 @@ public:
         if (isVisible) {
             uint32_t elapsedTime = now - lastUpdateTime;
             if (elapsedTime > 0) {
-                angle += rotationSpeed * elapsedTime;
-                if (angle >= 360.0f) {
-                    angle -= 360.0f;
-                }
+                angleAcc += rotationSpeed * elapsedTime;
+            if (angleAcc >= 360.0f) {
+                angleAcc -= 360.0f;
             }
-            lastUpdateTime = now;
+            angle = static_cast<uint32_t>(angleAcc);
+        }
+        lastUpdateTime = now;
         }
     }
 
