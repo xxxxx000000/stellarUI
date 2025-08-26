@@ -21,6 +21,7 @@ extern UIManager uiManager;
 extern ScreenRotationService screenrotationservice;
 
 MainPage::MainPage() {
+    auto* bg = new ColorBlock(0.5f,0.5f,1.0f,1.0f,TFT_BLACK,30);
     auto* batterytext = new LiveText(0.833f, 0.071f, 0xDEFB, []() {
         #ifdef batteryService
         return String((int)batteryservice.getPercentage()) + "%";
@@ -167,3 +168,4 @@ MainPage::MainPage() {
     });
     addChild(popup);
 }
+
