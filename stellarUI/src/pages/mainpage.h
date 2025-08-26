@@ -14,6 +14,7 @@
 #include "../services/batteryservice.h"
 #include "../services/inputservice.h"
 #include "../services/screenrotationservice.h"
+#include "../config.h"
 
 class MainPage : public Page {
 public:

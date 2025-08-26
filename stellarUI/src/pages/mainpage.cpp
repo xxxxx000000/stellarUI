@@ -36,19 +36,6 @@ MainPage::MainPage() {
     auto* block = new ColorBlock(0.5f,0.536f,0.833f,0.786f,0xD6BA,30);
     addChild(block);
 
-    auto* mblock = new ColorBlock(0.625f,0.268f,0.458f,0.143f,TFT_DARKGREY,30);
-    addChild(mblock);
-    Animator* anim = new Animator();
-    anim->addFloatAnim(&mblock->fy, 0.268f, 0.518f, 1000, EasingType::EaseOutBounce, 0);
-    anim->addFloatAnim(&mblock->fy, 0.518f, 0.768f, 1000, EasingType::EaseOutBounce, 1000);
-    anim->addFloatAnim(&mblock->fy, 0.768f, 0.268f, 1000, EasingType::EaseInOutQuad, 2000);
-    anim->addFloatAnim(&mblock->scale, 1.0f, 1.2f, 1500, EasingType::EaseInOutCubic, 0);
-    anim->addFloatAnim(&mblock->scale, 1.2f, 1.0f, 1500, EasingType::EaseInOutCubic, 1500);
-    anim->setLoop(true);
-    anim->start();
-    addAnimator(anim);
-
-
 
     auto* slider = new Slider(0.167f, 0.196f, 0.167f, 0.643f, 20, SliderDirection::Vertical, 0x1082, 0xFFFF, 0,
         #ifdef brightnessService
@@ -91,6 +78,7 @@ MainPage::MainPage() {
     addChild(txt2);
     auto* txt3 = new Text(0.688f,0.768f,"more",2,0xFFFF,true);
     addChild(txt3);
+
 
     auto* icon = new IconComponent(
         0.483f, 0.268f,
@@ -168,4 +156,18 @@ MainPage::MainPage() {
         #endif
     });
     addChild(popup);
+
+    Animator* anim = new Animator();
+    anim->addFloatAnim(&btn->fx, btn->fx + 0.1f, btn->fx, transitionDuration, EasingType::EaseInOutBack, 0);
+    anim->addFloatAnim(&btn2->fx, btn2->fx + 0.1f, btn2->fx, transitionDuration, EasingType::EaseInOutBack, 50);
+    anim->addFloatAnim(&btn3->fx, btn3->fx + 0.1f, btn3->fx, transitionDuration, EasingType::EaseInOutBack, 100);
+    anim->addFloatAnim(&txt->fx, txt->fx + 0.1f, txt->fx, transitionDuration, EasingType::EaseInOutBack, 0);
+    anim->addFloatAnim(&txt2->fx, txt2->fx + 0.1f, txt2->fx, transitionDuration, EasingType::EaseInOutBack, 50);
+    anim->addFloatAnim(&txt3->fx, txt3->fx + 0.1f, txt3->fx, transitionDuration, EasingType::EaseInOutBack,100);
+    anim->addFloatAnim(&icon->fx, icon->fx + 0.1f, icon->fx, transitionDuration, EasingType::EaseInOutBack, 0);
+    anim->addFloatAnim(&icon2->fx, icon2->fx + 0.1f, icon2->fx, transitionDuration, EasingType::EaseInOutBack, 50);
+    anim->addFloatAnim(&icon3->fx, icon3->fx + 0.1f, icon3->fx, transitionDuration, EasingType::EaseInOutBack, 100);
+    anim->addFloatAnim(&block->scale,1.2f,1.0f,transitionDuration,EasingType::EaseInOutBack,0);
+    anim->start();
+    addAnimator(anim);
 }

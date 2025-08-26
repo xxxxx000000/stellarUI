@@ -101,6 +101,9 @@ public:
             if (transitionTo) {
                 transitionTo->update(now);
             }
+            if(transitionFrom){
+                transitionFrom->update(now);
+            }
         }
     }
 
