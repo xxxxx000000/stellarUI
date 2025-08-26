@@ -1,5 +1,5 @@
-#include "wifipage.h"
-#include "../UIManager.h"
+#include "wifipage.hpp"
+#include "../UIManager.hpp"
 
 extern UIManager uiManager;
 extern ScreenRotationService screenrotationservice;
@@ -16,7 +16,7 @@ WifiPage::WifiPage() {
     };
     addChild(new Text(0.125f, 0.107f, "<", 2, 0xFFFF, true));
 
-    auto* rBtn = new Button(0.5f, 0.5f, 0.333f, 0.333f, 0x4090, ButtonShape::Circle, 30);
+    auto* rBtn = new Button(0.875f, 0.107f, 0.333f, 0.143f, 0x4090, ButtonShape::Circle, 30);
     addChild(rBtn);
     rBtn->onClickCallback = [this]() {
         screenrotationservice.setRotation(rt);
@@ -26,7 +26,7 @@ WifiPage::WifiPage() {
         }
     };
     auto* icon = new IconComponent(
-        0.5f, 0.5f,
+        0.875f, 0.107f,
         [](TFT_eSprite& buf, int cx, int cy, float s) {
             int r = s * 10;
             buf.drawSmoothArc(cx,cy,r,r - 1,0,270,TFT_WHITE,0x4090);
@@ -34,4 +34,7 @@ WifiPage::WifiPage() {
         }
     );
     addChild(icon);
+    auto* loader = new Loader(10,TFT_WHITE);
+    loader->setExist(true);
+    addChild(loader);
 }

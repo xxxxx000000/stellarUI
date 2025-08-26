@@ -1,5 +1,5 @@
-#include "posturepage.h"
-#include "../UIManager.h"
+#include "posturepage.hpp"
+#include "../UIManager.hpp"
 
 extern UIManager uiManager;
 #ifdef imuService

@@ -1,5 +1,5 @@
-#include "wifipage.h"
-#include "../UIManager.h"
+#include "bluetoothpage.hpp"
+#include "../UIManager.hpp"
 
 extern UIManager uiManager;
 

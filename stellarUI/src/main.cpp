@@ -1,37 +1,37 @@
 #include <Arduino.h>
 #include <TFT_eSPI.h>
 #include <FreeRTOS.h>
-#include "config.h"
+#include "config.hpp"
 
 #ifdef batteryService
-#include "services/batteryservice.h"
+#include "services/batteryservice.hpp"
 #endif
 #ifdef brightnessService 
-#include "services/brightnessservice.h"
-#include "services/storageservice.h"
+#include "services/brightnessservice.hpp"
+#include "services/storageservice.hpp"
 #endif
 #ifdef framerateService
-#include "services/framerateservice.h"
+#include "services/framerateservice.hpp"
 #endif
 #ifdef imuService
-#include "services/imuservice.h"
+#include "services/imuservice.hpp"
 #endif
 #ifdef rtcService
-#include "services/rtcservice.h"
+#include "services/rtcservice.hpp"
 #endif
 #ifdef sleepService
-#include "services/sleepservice.h"
-#include "services/brightnessservice.h"
-#include "services/storageservice.h"
+#include "services/sleepservice.hpp"
+#include "services/brightnessservice.hpp"
+#include "services/storageservice.hpp"
 #endif
 #ifdef storageService
-#include "services/storageservice.h"
+#include "services/storageservice.hpp"
 #endif
 
-#include "UIManager.h"
-#include "animation/bootanimation.h"
-#include "services/inputservice.h"
-#include "services/screenrotationservice.h"
+#include "UIManager.hpp"
+#include "animation/bootanimation.hpp"
+#include "services/inputservice.hpp"
+#include "services/screenrotationservice.hpp"
 
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite buffer = TFT_eSprite(&tft);

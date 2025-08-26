@@ -1,5 +1,5 @@
-#include "ToolsPage.h"
-#include "../UIManager.h"
+#include "ToolsPage.hpp"
+#include "../UIManager.hpp"
 
 extern UIManager uiManager;
 extern InputService inputservice;

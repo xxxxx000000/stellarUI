@@ -1,5 +1,5 @@
-#include "MainPage.h"
-#include "../UIManager.h"
+#include "MainPage.hpp"
+#include "../UIManager.hpp"
 
 #ifdef brightnessService
 #ifdef storageService
@@ -65,6 +65,7 @@ MainPage::MainPage() {
         #ifdef sleepService
         sleepservice.setPreventSleep(true);
         #endif
+        
     };
     addChild(btn2);
     auto* btn3 = new Button(0.625f,0.768f,0.458f,0.143f,0x001F,ButtonShape::RoundedRect,20,0xD75F);
@@ -167,7 +168,6 @@ MainPage::MainPage() {
     anim->addFloatAnim(&icon->fx, icon->fx + 0.1f, icon->fx, transitionDuration, EasingType::EaseInOutBack, 0);
     anim->addFloatAnim(&icon2->fx, icon2->fx + 0.1f, icon2->fx, transitionDuration, EasingType::EaseInOutBack, 50);
     anim->addFloatAnim(&icon3->fx, icon3->fx + 0.1f, icon3->fx, transitionDuration, EasingType::EaseInOutBack, 100);
-    anim->addFloatAnim(&block->scale,1.2f,1.0f,transitionDuration,EasingType::EaseInOutBack,0);
     anim->start();
     addAnimator(anim);
 }

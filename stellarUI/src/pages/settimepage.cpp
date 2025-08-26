@@ -1,4 +1,4 @@
-#include "settimepage.h"
+#include "settimepage.hpp"
 
 extern UIManager uiManager;
 #ifdef rtcService

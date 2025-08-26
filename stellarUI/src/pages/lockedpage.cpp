@@ -1,6 +1,6 @@
-#include "LockedPage.h"
-#include "MainPage.h"  
-#include "../UIManager.h" 
+#include "LockedPage.hpp"
+#include "MainPage.hpp"  
+#include "../UIManager.hpp" 
 
 extern UIManager uiManager;
 #ifdef framerateService
