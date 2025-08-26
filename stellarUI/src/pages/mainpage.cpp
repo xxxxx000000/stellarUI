@@ -169,5 +169,3 @@ MainPage::MainPage() {
     });
     addChild(popup);
 }
-
-

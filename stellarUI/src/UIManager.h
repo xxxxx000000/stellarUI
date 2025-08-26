@@ -98,6 +98,9 @@ public:
             if (elapsed >= transitionDuration) {
                 transitionDone = true;
             }
+            if (transitionTo) {
+                transitionTo->update(now);
+            }
         }
     }
 
@@ -169,7 +172,7 @@ public:
                     break;
 
                 case TransitionType::UncoverUp:
-                    if (transitionTo) transitionTo->draw(buf, 0, -h/ + progressPxY/5);
+                    if (transitionTo) transitionTo->draw(buf, 0, -h/5 + progressPxY/5);
                     if (transitionFrom) transitionFrom->draw(buf, 0, progressPxY);
                     break;
 
